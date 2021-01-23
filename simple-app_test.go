@@ -1,4 +1,4 @@
-package main_test
+package main
 
 import (
 	"net/http"
@@ -6,14 +6,14 @@ import (
 	"testing"
 )
 
-func TestHTTPGet(t *testing.T) {
+func Testindex(t *testing.T) {
 	t.Run("it should return httpCode 200", func(t *testing.T) {
 		req, err := http.NewRequest(http.MethodGet, "/", nil)
 		if err != nil {
 			t.Error(err)
 		}
 		resp := httptest.NewRecorder()
-		handler := http.HandlerFunc(handler.UserHandler)
+		handler := index()
 		handler.ServeHTTP(resp, req)
 
 		if status := resp.Code; status != http.StatusOK {
