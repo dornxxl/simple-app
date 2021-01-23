@@ -1,17 +1,17 @@
-FROM golang:latest-alpine AS build_base
+FROM golang:alpine AS build_base
 
 RUN apk add --no-cache git
 
 WORKDIR /tmp/simple-app
 
 COPY go.mod .
-COPY go.sum .
+# COPY go.sum .
 
 RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 go test -v
+# RUN CGO_ENABLED=0 go test -v
 
 RUN go build -o ./out/simple-app .
 
